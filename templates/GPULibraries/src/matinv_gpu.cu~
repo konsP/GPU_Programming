@@ -1,0 +1,89 @@
+//
+// GPU routines for SPD Linear Algebra benchmark
+//
+// see matinv.c for more info
+//
+// Alan Gray, EPCC, August 2014
+// (C) EPCC, The University of Edinburgh 2014
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <cuda_runtime.h>
+#include <omp.h>
+#include "cublas_v2.h"
+
+#include "magma.h"
+#include "magma_lapack.h"
+
+
+void checkCUDAError(const char *msg);
+
+// print GPU device number
+extern "C" void printDeviceNumber(){
+
+  int device;
+
+  cudaGetDevice(&device);
+  checkCUDAError("getDevice");  
+  
+  printf("GPU device number %d will be used (if called upon)\n\n",device);
+  
+
+}
+
+// square matrix-matrix multiplication on the GPU
+extern "C" void matmult_gpu(double* mat1, double* mat2, 
+			   double* result, int size){
+
+   
+
+
+  
+
+  
+  return;
+  
+  
+}
+
+
+// matrix inversion on the GPU
+extern "C" void invert_gpu(double* mat1, int size){
+
+
+   
+    double t1, t2;
+    int info;
+
+    magma_init();
+
+    
+
+
+
+
+
+
+    magma_finalize();
+
+    return;
+
+
+}
+
+
+/* check for CUDA errors */
+void checkCUDAError(const char *msg)
+{
+        cudaError_t err = cudaGetLastError();
+        if( cudaSuccess != err) 
+        {
+                fprintf(stderr, "Cuda error: %s: %s.\n", msg, 
+                                cudaGetErrorString( err) );
+                fflush(stdout);
+                fflush(stderr);
+                exit(EXIT_FAILURE);
+        }                         
+}
+
